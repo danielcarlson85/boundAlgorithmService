@@ -38,9 +38,15 @@ namespace Bound.AlgorithmService.IoTHubFunctions
             var dataToSave = new BlobPathValue();
 
             dataToSave.ContainerName = userData.ObjectId;
-            dataToSave.BlobName = userData.MachineName.ToLower() + "/" + DateTime.Now.ToShortDateString() + " " + DateTime.Now.ToShortTimeString();
+            dataToSave.BlobName = userData.MachineName.ToLower() + "/" + DateTime.Now.ToShortDateString() + " " + DateTime.Now.ToShortTimeString() + ".json";
 
-            await blobsManager.AppendDataInBlob(dataToSave, userTrainingData);
+            var isSavedToBlob = await blobsManager.AppendDataInBlob(dataToSave, userTrainingData);
+            if (isSavedToBlob)
+            {
+                Console.WriteLine();
+                Console.WriteLine($"All training data is saved to blob: {userData.ObjectId}/{dataToSave.BlobName}");
+
+            }
         }
 
 
