@@ -1,5 +1,5 @@
 ﻿using System;
-using static Bound.AlgorithmService.IoTHubFunctions.BoundDeviceFunctions;
+using WorkoutData.Abstractions.Models;
 
 namespace AlgorithmService.IoTHubFunctions.Helpers
 {
@@ -14,8 +14,8 @@ namespace AlgorithmService.IoTHubFunctions.Helpers
         {
             var blobName = CreateBlobName(userData);
 
-            //var fullBlobPath = $"{userData.Name}/{userData.Date}/{deviceName}/{blobName}";
-            return null;//fullBlobPath;
+            var fullBlobPath = $"{userData.Name}/{userData.Date}/{deviceName}/{blobName}";
+            return fullBlobPath;
         }
     }
 }

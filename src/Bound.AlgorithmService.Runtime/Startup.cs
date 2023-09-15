@@ -16,7 +16,6 @@ using RestSharp;
 using System.IdentityModel.Tokens.Jwt;
 using WorkoutData.Managers;
 using WorkoutData.Abstractions.Interfaces;
-using Bound.AlgorithmService.Managers.Database;
 
 namespace Bound.AlgorithmService.Runtime
 {

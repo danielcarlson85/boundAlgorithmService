@@ -8,7 +8,6 @@
     <PackageReference Include="Microsoft.Azure.WebJobs.Extensions.ServiceBus" Version="4.1.0" />
     <PackageReference Include="Microsoft.NET.Sdk.Functions" Version="3.0.13" />
     <PackageReference Include="Azure.Messaging.ServiceBus" Version="7.5.0" />
-    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.19.0" />
 
   </ItemGroup>
   <ItemGroup>
@@ -22,9 +21,5 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Helpers\NewFolder\" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Bound.AlgorithmService.Abstractions\AlgorithmService.Abstractions.csproj" />
-    <ProjectReference Include="..\Bound.AlgorithmService.Manager\AlgorithmService.Managers.csproj" />
   </ItemGroup>
 </Project>

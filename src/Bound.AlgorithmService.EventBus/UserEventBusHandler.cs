@@ -31,7 +31,7 @@ namespace Bound.AlgorithmService.EventBus
         public async Task SendMessageAsync(string payload)
         {
             Debug.WriteLine($"Message {payload} is sent to User queue");
-            ServiceBusMessage message = new ServiceBusMessage(payload);
+            ServiceBusMessage message = new(payload);
             await _sender.SendMessageAsync(message);
         }
     }

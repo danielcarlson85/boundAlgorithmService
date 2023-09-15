@@ -1,7 +1,18 @@
+using AlgorithmService.IoTHubFunctions;
+using AlgorithmService.IoTHubFunctions.Constants;
+using AlgorithmService.IoTHubFunctions.Entities;
+using AlgorithmService.IoTHubFunctions.Helpers;
+using Microsoft.Azure.EventHubs;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using System.Collections.Generic;
+using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
+using WorkoutData.Abstractions.Interfaces;
+using WorkoutData.Abstractions.Models;
+using IoTHubTrigger = Microsoft.Azure.WebJobs.EventHubTriggerAttribute;
 
 namespace Bound.AlgorithmService.IoTHubFunctions
 {

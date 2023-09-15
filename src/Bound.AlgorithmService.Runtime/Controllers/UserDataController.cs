@@ -2,12 +2,10 @@
 // Copyright (c) Bound Technologies AB. All rights reserved.
 // -------------------------------------------------------------------------------------------------
 
-using Bound.AlgorithmService.Managers.Database;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
 using System.Threading.Tasks;
 using WorkoutData.Abstractions.Interfaces;
-using static Bound.AlgorithmService.IoTHubFunctions.BoundDeviceFunctions;
 
 namespace WorkoutData.API.Controllers
 {
@@ -17,10 +15,9 @@ namespace WorkoutData.API.Controllers
     {
         public IBlobManager BlobsManager { get; }
 
-        public UserDataController(IBlobManager blobsManager, SqlContext sqlContext)
+        public UserDataController(IBlobManager blobsManager)
         {
             this.BlobsManager = blobsManager;
-
         }
 
         /// <summary>
@@ -40,9 +37,6 @@ namespace WorkoutData.API.Controllers
             string blobData = await this.BlobsManager.GetAllDataFromBlob("users", fullName);
             return this.Ok(blobData);
         }
-
-
-
     }
 }
 
