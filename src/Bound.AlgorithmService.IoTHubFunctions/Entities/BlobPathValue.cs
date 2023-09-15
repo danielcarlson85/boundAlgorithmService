@@ -6,9 +6,11 @@ using System;
 
 namespace WorkoutData.Abstractions.Models
 {
-    public class BlobPathValue : UserData
+    public class BlobPathValue
     {
         public string ContainerName { get; set; }
         public string BlobName { get; set; }
+
+        public UserData UserData { get; set; }
     }
 }

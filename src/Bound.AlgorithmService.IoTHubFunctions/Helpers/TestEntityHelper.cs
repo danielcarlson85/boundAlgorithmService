@@ -16,11 +16,7 @@ namespace AlgorithmService.IoTHubFunctions.Helpers
             var testDataUser = new BlobPathValue
             {
                 ContainerName = containerName,
-                BlobName = fullBlobName,
-                Name = "testName",
-                Date = DateTime.Now,
-                Reps = "13",
-                Data = userData.Data
+                BlobName = fullBlobName
             };
 
             return testDataUser;
