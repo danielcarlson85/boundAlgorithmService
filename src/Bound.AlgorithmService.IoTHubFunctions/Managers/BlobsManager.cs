@@ -93,17 +93,19 @@ namespace WorkoutData.Managers
                 await appBlob.CreateOrReplaceAsync();
             }
 
-            BlobContainerPermissions permissions = new BlobContainerPermissions
-            {
-                PublicAccess = BlobContainerPublicAccessType.Blob,
-            };
+            await appBlob.AppendTextAsync(textToAppend);
 
-            await container.SetPermissionsAsync(permissions);
 
-            using (var stream = new System.IO.MemoryStream(System.Text.Encoding.UTF8.GetBytes(textToAppend)))
-            {
-                await appBlob.AppendBlockAsync(stream);
-            }
+            //BlobContainerPermissions permissions = new BlobContainerPermissions
+            //{
+            //    PublicAccess = BlobContainerPublicAccessType.Blob,
+            //};
+
+            //await container.SetPermissionsAsync(permissions);
+
+            //using (var stream = new System.IO.MemoryStream(System.Text.Encoding.UTF8.GetBytes(textToAppend)))
+            //{
+            //}
 
             return true;
         }

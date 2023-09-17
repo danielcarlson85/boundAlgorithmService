@@ -20,7 +20,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Azure.Messaging.ServiceBus" Version="7.5.0" />
     <PackageReference Include="Serilog.AspNetCore" Version="4.1.0" />
     <PackageReference Include="Serilog.Enrichers.Environment" Version="2.2.0" />
     <PackageReference Include="Serilog.Sinks.Elasticsearch" Version="8.4.1" />
@@ -36,12 +35,6 @@
     <PackageReference Include="AutoMapper" Version="10.1.1" />
     <PackageReference Include="Microsoft.IdentityModel.Protocols.OpenIdConnect" Version="6.12.2" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="5.0.10" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\Bound.AlgorithmService.Abstractions\AlgorithmService.Abstractions.csproj" />
-    <ProjectReference Include="..\Bound.AlgorithmService.IoTHubFunctions\AlgorithmService.IoTHubFunctions.csproj" />
-    <ProjectReference Include="..\Bound.AlgorithmService.Manager\AlgorithmService.Managers.csproj" />
   </ItemGroup>
 
   <ItemGroup>

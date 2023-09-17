@@ -1,17 +1,15 @@
+using Microsoft.Azure.WebJobs;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Diagnostics;
 using System.IO;
-using System.Text;
-using Microsoft.Azure.WebJobs;
-using Microsoft.Azure.WebJobs.Host;
-using Microsoft.Extensions.Logging;
 
 namespace AlgorithmService.WorkoutDataFunctions
 {
     public class Function1
     {
         [FunctionName("Function1")]
-        public void Run([BlobTrigger("userdata/{name}", Connection = "AzureWebJobsStorage")] Stream myBlob, string name, ILogger log)
+        public void Run([BlobTrigger("{name}", Connection = "AzureWebJobsStorage")] Stream myBlob, string name, ILogger log)
         {
             Stopwatch stopwatch = new Stopwatch();
             stopwatch.Start();

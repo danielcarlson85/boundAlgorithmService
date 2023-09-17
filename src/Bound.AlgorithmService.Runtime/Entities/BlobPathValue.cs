@@ -3,9 +3,8 @@
 // -------------------------------------------------------------------------------------------------
 
 using System;
-using static Bound.AlgorithmService.IoTHubFunctions.BoundDeviceFunctions;
 
-namespace WorkoutData.Abstractions.Models
+namespace WorkoutData.Runtime
 {
     public class BlobPathValue
     {

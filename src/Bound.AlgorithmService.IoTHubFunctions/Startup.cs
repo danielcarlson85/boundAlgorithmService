@@ -1,12 +1,8 @@
 ﻿using AlgorithmService.IoTHubFunctions;
-using AlgorithmService.IoTHubFunctions.Entities;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.Hosting;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.DependencyInjection.Extensions;
 using System;
-using System.Collections.Generic;
-using System.Text;
 using WorkoutData.Abstractions.Interfaces;
 using WorkoutData.Managers;
 
@@ -17,7 +13,6 @@ namespace AlgorithmService.IoTHubFunctions
     public class Startup : IWebJobsStartup
     {
         public static int Counter;
-        public static User User = new User();
 
         public void Configure(IWebJobsBuilder builder)
         {

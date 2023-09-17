@@ -2,16 +2,16 @@
 // Copyright (c) Bound Technologies AB. All rights reserved.
 // -------------------------------------------------------------------------------------------------
 
+using Bound.AlgorithmService.Runtime.Entities;
 using System;
-using static Bound.AlgorithmService.IoTHubFunctions.BoundDeviceFunctions;
+using System.Collections.Generic;
 
-namespace WorkoutData.Abstractions.Models
+namespace WorkoutData.Runtime
 {
-    public class BlobPathValue
+    public class UserData
     {
-        public string ContainerName { get; set; }
-        public string BlobName { get; set; }
-
-        public UserData UserData { get; set; }
+        public string MachineName { get; set; }
+        public string ObjectId { get; set; }
+        public List<TrainingData> TrainingData { get; set; }
     }
 }

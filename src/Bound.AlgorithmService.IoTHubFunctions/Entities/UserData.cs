@@ -1,16 +1,21 @@
-﻿// -------------------------------------------------------------------------------------------------
-// Copyright (c) Bound Technologies AB. All rights reserved.
-// -------------------------------------------------------------------------------------------------
+﻿using System;
+using System.Collections.Generic;
 
-using System;
-
-namespace WorkoutData.Abstractions.Models
+namespace Bound.AlgorithmService.IoTHubFunctions
 {
-    public class UserData
+    public partial class BoundDeviceFunctions
     {
-        public string Name { get; set; }
-        public string Reps { get; set; }
-        public string Data { get; set; }
-        public DateTime Date { get; set; }
+        public class UserData
+        {
+            public string MachineName { get; set; }
+            public string ObjectId { get; set; }
+            public List<TrainingData> TrainingData { get; set; }
+
+            public string Name { get; set; }
+            public string Reps { get; set; }
+            public string Data { get; set; }
+            public DateTime Date { get; set; }
+        }
     }
+
 }

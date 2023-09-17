@@ -1,7 +1,7 @@
 ﻿using System;
 using WorkoutData.Abstractions.Models;
 
-namespace AlgorithmService.IoTHubFunctions.Entities
+namespace WorkoutData.Runtime
 {
     public class User
     {
