@@ -25,9 +25,10 @@ namespace Bound.AlgorithmService.IoTHubFunctions
             var userTrainingData = JsonConvert.SerializeObject(userData.TrainingData);
 
             var dataToSave = new BlobPathValue();
+            string fullBlobFileName = GetBlobFullFileName(userData);
 
             dataToSave.ContainerName = userData.ObjectId;
-            dataToSave.BlobName = userData.MachineName.ToLower() + "/" + DateTime.Now.ToShortDateString() + " " + DateTime.Now.ToShortTimeString() + ".json";
+            dataToSave.BlobName = fullBlobFileName;
 
             var isSavedToBlob = await blobsManager.AppendDataInBlob(dataToSave, userTrainingData);
             if (isSavedToBlob)
@@ -36,6 +37,27 @@ namespace Bound.AlgorithmService.IoTHubFunctions
                 Console.WriteLine($"All training data is saved to blob: {userData.ObjectId}/{dataToSave.BlobName}");
             }
         }
-    }
 
+
+        // Need this because when published to azure azure using other date format
+        private static string GetBlobFullFileName(UserData userData)
+        {
+            var year = DateTime.Now.Year.ToString();
+            var month = DateTime.Now.Month.ToString();
+            var day = DateTime.Now.Day.ToString();
+
+            var hour = DateTime.Now.Hour.ToString();
+            var minute = DateTime.Now.Minute.ToString();
+
+            if (month.Length == 1) month = "0" + month;
+            if (day.Length == 1) day = "0" + day;
+            if (hour.Length == 1) hour = "0" + hour;
+            if (minute.Length == 1) minute = "0" + minute;
+
+            var fullSwedishDate = $"{year}-{month}-{day} {hour}:{minute}.json";
+            var machineName = userData.MachineName.ToLower();
+            var fullBlobFileName = machineName + "/" + fullSwedishDate;
+            return fullBlobFileName;
+        }
+    }
 }
