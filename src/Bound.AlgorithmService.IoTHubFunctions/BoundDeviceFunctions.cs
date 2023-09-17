@@ -42,19 +42,21 @@ namespace Bound.AlgorithmService.IoTHubFunctions
         // Need this because when published to azure azure using other date format
         private static string GetBlobFullFileName(UserData userData)
         {
-            var year = DateTime.Now.Year.ToString();
-            var month = DateTime.Now.Month.ToString();
-            var day = DateTime.Now.Day.ToString();
+            var year = DateTime.UtcNow.Year.ToString();
+            var month = DateTime.UtcNow.Month.ToString();
+            var day = DateTime.UtcNow.Day.ToString();
 
-            var hour = DateTime.Now.Hour.ToString();
-            var minute = DateTime.Now.Minute.ToString();
+            var hour = DateTime.UtcNow.Hour;
+            var hourSweden = (hour + 2).ToString();
+
+            var minute = DateTime.UtcNow.Minute.ToString();
 
             if (month.Length == 1) month = "0" + month;
             if (day.Length == 1) day = "0" + day;
-            if (hour.Length == 1) hour = "0" + hour;
+            if (hourSweden.Length == 1) hourSweden = "0" + hourSweden;
             if (minute.Length == 1) minute = "0" + minute;
 
-            var fullSwedishDate = $"{year}-{month}-{day} {hour}:{minute}.json";
+            var fullSwedishDate = $"{year}-{month}-{day} {hourSweden}:{minute}.json";
             var machineName = userData.MachineName.ToLower();
             var fullBlobFileName = machineName + "/" + fullSwedishDate;
             return fullBlobFileName;
