@@ -2,6 +2,8 @@ using Microsoft.Azure.WebJobs;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using WorkoutData.Abstractions.Models;
 using WorkoutData.Managers;
@@ -10,6 +12,7 @@ namespace Bound.AlgorithmService.IoTHubFunctions
 {
     public partial class BoundDeviceFunctions
     {
+        //{"MachineName": "ChestMachine", "ObjectId": "6bc00f44-9a73-47da-a542-ee87d1e3981d", "Device": "Empty", "TrainingData": []}
 
         static string blobConnectionString = "DefaultEndpointsProtocol=https;AccountName=bound2023iothub;AccountKey=KkV6TfhwGF24XAm60fyD3/FGsLQtI+0bkYvqbAN7dBoY7FEkRfrbFAh+ZqQEbbL4fBgCVSHtNboh+ASt1Fpi8g==;EndpointSuffix=core.windows.net";
 
@@ -22,7 +25,8 @@ namespace Bound.AlgorithmService.IoTHubFunctions
             log.LogInformation($"C# function triggered to process a message: {myEventHubMessage}");
 
             var userData = JsonConvert.DeserializeObject<UserData>(myEventHubMessage);
-            var userTrainingData = JsonConvert.SerializeObject(userData.TrainingData);
+            var cleanedTrainingData = CleanList(userData.TrainingData);
+            var userTrainingData = JsonConvert.SerializeObject(cleanedTrainingData);
 
             var dataToSave = new BlobPathValue();
             string fullBlobFileName = GetBlobFullFileName(userData);
@@ -38,6 +42,23 @@ namespace Bound.AlgorithmService.IoTHubFunctions
             }
         }
 
+        static List<TrainingData> CleanList(List<TrainingData> dataList)
+        {
+            var firstOccurrences = new Dictionary<string, TrainingData>();
+            var lastOccurrences = new Dictionary<string, TrainingData>();
+
+            foreach (var data in dataList)
+            {
+                if (!firstOccurrences.ContainsKey(data.X.ToString())) 
+                    firstOccurrences[data.X.ToString()] = data;
+                lastOccurrences[data.X.ToString()] = data;
+            }
+
+            var cleanedData = firstOccurrences.Values.ToList();
+            cleanedData.AddRange(lastOccurrences.Values);
+            cleanedData = cleanedData.OrderBy(data => data.X).ToList();
+            return cleanedData;
+        }
 
         // Need this because when published to azure azure using other date format
         private static string GetBlobFullFileName(UserData userData)
