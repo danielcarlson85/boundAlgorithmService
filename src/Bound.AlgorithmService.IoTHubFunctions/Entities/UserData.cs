@@ -11,9 +11,9 @@ namespace Bound.AlgorithmService.IoTHubFunctions
             public string ObjectId { get; set; }
             public List<TrainingData> TrainingData { get; set; }
 
-            public string Name { get; set; }
-            public string Reps { get; set; }
-            public string Data { get; set; }
+            public string Email { get; set; }
+            public int TotalReps { get; set; }
+            public int Weight { get; set; }
             public DateTime Date { get; set; }
         }
     }
